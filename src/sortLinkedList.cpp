@@ -19,5 +19,37 @@ struct node {
 };
 
 struct node * sortLinkedList(struct node *head) {
-	return NULL;
+
+	if (head == NULL) return NULL;
+
+	struct node *prev, *small, *temp = head, *temp2;
+
+	prev = head;
+	//Sorting the linkedlist using bubble sort
+	while (temp)
+	{
+
+		small = temp;
+		temp2 = temp->next;
+
+		while (temp2)
+		{
+			if (small->num > temp2->num)
+			{
+				small = temp2;
+			}
+
+			temp2 = temp2->next;
+		}
+
+		int n = temp->num;
+		temp->num = small->num;
+		small->num = n;
+		temp = temp->next;
+	}
+
+
+	return head;
+
+
 }
