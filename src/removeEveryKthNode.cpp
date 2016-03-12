@@ -1,3 +1,4 @@
+#include<stdlib.h>
 /*
 OVERVIEW: Given a single linked list, remove every Kth node in the linked list.
 E.g.: 1->2->3->4->5 and K 2, output is 1->3->5.
@@ -19,5 +20,40 @@ struct node {
 };
 
 struct node * removeEveryKthNode(struct node *head, int K) {
-	return NULL;
+
+	int i = 1;
+
+	if (head == NULL || K<1) return NULL;
+	if (K == 1) { free(head); head = NULL; return head; }//if K==1 returning Null value.
+
+	struct node *current = head;
+
+	while (current)
+	{
+		if (i == K - 1) // checks the Kth node occurence
+		{
+			if (current->next != NULL)
+			{
+				i = 1;
+				
+				current->next = current->next->next;
+				current = current->next;
+			}
+			else return head;
+
+		}
+		else
+		{
+			printf("%d ", current->num);
+			current = current->next;
+			i++;
+		}
+
+
+
+
+	}
+	return  head;
+
+
 }
